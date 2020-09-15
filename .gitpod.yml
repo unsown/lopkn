@@ -1,0 +1,19 @@
+image:
+  file: .gitpod.Dockerfile
+
+tasks:
+  - name: TCP Tunnel
+    command: chisel server --socks5
+  - name: SSH Server
+    command: |
+      [ -f /workspace/dropbear.hostkey ] || dropbearkey -t rsa -f /workspace/dropbear.hostkey
+      dropbear -r /workspace/dropbear.hostkey -F -E -s -p 2222 -P ~/dropbear.pid
+  - command: |
+      mkdir -p ~/.ssh && open ~/.ssh/authorized_keys
+      curl https://github.com/laseryuan.keys >> ~/.ssh/authorized_keys
+      clear
+
+ports:
+  - port: 8080
+  - port: 2222
+    onOpen: ignore
