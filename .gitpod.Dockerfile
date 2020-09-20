@@ -1,0 +1,1 @@
+FROM lasery/workspace-full
