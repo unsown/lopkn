@@ -1,5 +1,4 @@
-image:
-  file: .gitpod.Dockerfile
+image: lasery/gitpod-workspace-full:20.09
 
 tasks:
   - init: pip install -r requirements.txt
